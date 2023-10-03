@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_big_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:52:48 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/02 14:46:00 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:04:34 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	sort_three_high_low(t_stack **b)
 static double	sum_stack(t_stack *a, int *i)
 {
 	long long	sum;
-	double		average;
+	//int			average;
 
 	sum = 0;
 	while (a)

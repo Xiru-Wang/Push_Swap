@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   fill_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:47:32 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/09/29 11:49:24 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:04:55 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	t_stack *fill_stack_value(int ac, char **av);
+static	t_stack *fill_stack_value(char **av);
 
-t_stack *fill_stack(int ac, char **av)
+t_stack *fill_stack(char **av)
 {
 	t_stack	*a;
 
-	a = fill_stack_value(ac, av);
+	a = fill_stack_value(av);
 	if (is_sorted(a) == 1)
 	{
 		free_stack(&a);
@@ -27,7 +27,7 @@ t_stack *fill_stack(int ac, char **av)
 	return (a);
 }
 
-static t_stack	*fill_stack_value(int ac, char **av)
+static t_stack	*fill_stack_value(char **av)
 {
 	t_stack	*a;
 	t_stack	*temp;

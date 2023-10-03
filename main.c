@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:36:43 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/02 08:26:03 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:14:12 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(int ac, char **av)
 	printf("Before fill_stack\n");
 	a = NULL;
 	b = NULL;
-	a = fill_stack(ac, av);
+	a = fill_stack(av);
 
     printf("Before:\n");
 	print_stack(a);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:12:42 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/02 14:25:04 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/03 18:13:54 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,12 @@ void	rb(t_stack **b)
 	write(1, "rb\n", 3);
 }
 
-void	rr(t_stack **a, t_stack **b)
+void	rr(t_stack **a, t_stack **b, t_stack *top)
 {
-	rotate(a);
-	rotate(b);
-	write(1, "rr\n", 3);
+	while ((*a) != top->target && (*b) != top)
+	{
+		rotate(a);
+		rotate(b);
+		write(1, "rr\n", 3);
+	}
 }

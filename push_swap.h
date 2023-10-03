@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:36:40 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/02 17:44:07 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:05:24 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdio.h>
-
+# include <stdbool.h>
 
 typedef struct	s_stack
 {
@@ -40,7 +40,7 @@ void		print_stack(t_stack *stack);
 long int	atoi_range(char *s);
 void		check_av(char **av);
 //fill_stack
-t_stack		*fill_stack(int ac, char **av);
+t_stack		*fill_stack(char **av);
 int			is_sorted(t_stack *a);
 // utils_node
 int			size(t_stack *stack);
@@ -53,11 +53,11 @@ void		ss(t_stack **a, t_stack **b);
 //rotate
 void		ra(t_stack **a);
 void		rb(t_stack **b);
-void		rr(t_stack **a, t_stack **b);
+void		rr(t_stack **a, t_stack **b, t_stack *top);
 //reverse rotate
 void		rra(t_stack **a);
 void		rrb(t_stack **b);
-void		rrr(t_stack **a, t_stack **b);
+void		rrr(t_stack **a, t_stack **b, t_stack *top);
 //sort_tiny
 void		sort_three(t_stack **a);
 void		sort_four(t_stack **a, t_stack **b);
@@ -69,6 +69,12 @@ void		pa(t_stack **a, t_stack **b);
 void		pb(t_stack **b, t_stack **a);
 //
 void		push_below_average(t_stack **a, t_stack **b);
-void		sort_big(t_stack **a, t_stack **b);
+//
+void		set_target(t_stack *a, t_stack *b);
+void		calculate_price(t_stack *a, t_stack *b);
+void		set_flag(t_stack *stack);
+t_stack		*find_best_price(t_stack *b);
+//
+void	sort_big(t_stack **a, t_stack **b);
 
-#endif
+# endif
