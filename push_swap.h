@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:36:40 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/03 19:05:24 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/10/05 21:15:59 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <stdio.h>
 # include <stdbool.h>
 
+# define TOP 42
+# define BOTTOM 24
+
 typedef struct	s_stack
 {
 	int				value;
@@ -26,7 +29,7 @@ typedef struct	s_stack
 	int				cost;//how many moves to be on top
 	int				flag;// UP(1st half) or BOTTOM (the other half)
 	int				price;//cost_A + cost_B
-	int				best_price;//cheapest
+	//int				best_price;//cheapest
 	struct s_stack *next;
 	struct s_stack	*target;
 }				t_stack;
@@ -67,14 +70,12 @@ t_stack		*find_max_node(t_stack *a);
 // pa pb
 void		pa(t_stack **a, t_stack **b);
 void		pb(t_stack **b, t_stack **a);
-//
+// count average and push
 void		push_below_average(t_stack **a, t_stack **b);
-//
 void		set_target(t_stack *a, t_stack *b);
 void		calculate_price(t_stack *a, t_stack *b);
 void		set_flag(t_stack *stack);
-t_stack		*find_best_price(t_stack *b);
-//
-void	sort_big(t_stack **a, t_stack **b);
+t_stack		*find_cheapest_node(t_stack *b);
+void		sort_big(t_stack **a, t_stack **b);
 
 # endif

@@ -10,17 +10,12 @@ LIB = push_swap.h
 SRC = $(wildcard *.c)
 OBJS = $(SRC:.c=.o)
 
-all:
-	$(NAME)
-
-#$(NAME): $(OBJS)
-#	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
-#	@echo "$(GREEN)$(OBJS) was creared.\n$(RESET)"
-#	@echo "$(GREEN)$(NAME) was creared.\n$(RESET)"
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(GREEN)$(NAME) $(OBJS) was created.$(RESET)"
+	@echo "$(GREEN)$(OBJS) was creared.\n$(RESET)"
+	@echo "$(GREEN)$(NAME) was creared.\n$(RESET)"
 
 # %.o: %.c
 # 	$(CC) $(CFLAGS) -c $< -o $@
@@ -36,10 +31,4 @@ fclean: clean
 
 re:		fclean all
 
-# norm:
-# 	@echo "$(GREEN) mandatory norminette$(RESET)"
-# 	@norminette $(SRCS)
-
 .PHONY: all clean fclean re
-
-

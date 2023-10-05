@@ -3,120 +3,134 @@
 /*                                                        :::      ::::::::   */
 /*   sort_big_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 20:52:48 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/03 19:04:34 by xiwang           ###   ########.fr       */
+/*   Created: 2023/10/02 14:45:05 by xiruwang          #+#    #+#             */
+/*   Updated: 2023/10/05 21:12:38 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	last(t_stack *head)
+//https://github.com/suspectedoceano/push_swap/blob/main/push_swap/push_swap_init.c
+//find the smallest big
+void	set_target(t_stack *a, t_stack *b)
 {
-	int	value;
+	int		best_match;
+	t_stack	*target;
+	t_stack	*temp;
 
-	while (head->next != NULL)
+	while (b)
 	{
-		head = head->next;//last node
-		value = head->value;//last.value
+		best_match = INT_MAX;//make sure it will be replaced
+		temp = a;//!!reset a, otherwise
+		while (temp)
+		{
+			if (temp->value > b->value && temp->value < best_match)
+			{
+				best_match = temp->value;
+				target = temp;
+			}
+			temp = temp->next;
+		}
+		if (best_match == INT_MAX)// biggestB finds smallestA
+			b->target = find_min_node(a);
+		else
+			b->target = target;
+		b = b->next;
 	}
-	return (value);
 }
 
-/*
-same logic like sort_three in tiny:
-Principle: MAX to bottom
-first is max:  3 2 1/3 1 2 ra -> 2 1 3/1 2 3
-second is max: 1 3 2/2 3 1 rra-> 2 1 3/1 2 3
-last is max:         2 1 3 sa -> 1 2 3
-*/
-static void	sort_three_low_high(t_stack **a)
+void	set_flag(t_stack *stack)
 {
-	int	bottom;
-
-	bottom = last(*a);
-	if ((*a)->value > (*a)->next->value && (*a)->value > bottom)
-		ra(a);//first is max, roate to bottom
-	else if ((*a)->next->value > (*a)->value && (*a)->next->value > bottom)
-		rra(a);//if middle is max, rra so max goes to third position
-	if ((*a)->value > (*a)->next->value)
-		sa(a);//if 1st > 2rd
+	int	i;
+	int	middle;
+	i = 0;
+	middle = size(stack) / 2;
+	while (stack)
+	{
+		stack->flag = TOP;//top half
+		if (i > middle)
+			stack->flag = BOTTOM;//bottom half
+		i++;
+		stack = stack->next;
+	}
 }
 
-static void	sort_three_high_low(t_stack **b)
+//cost to be on top  0 1 2 3 4|3 2 1(8/2 ==4)
+static void	set_cost_to_top(t_stack *stack)
 {
-	int	bottom;
-
-	bottom = last(*b);
-	if ((*b)->value < (*b)->next->value && (*b)->value < bottom)
-		rb(b);//if first is min, roate to bottom
-	else if ((*b)->next->value > (*b)->value && (*b)->next->value > bottom)
-		rrb(b);//if second is min, rrb goes to third position
-	if ((*b)->value < (*b)->next->value)
-		sb(b);//if 1st > 2rd
+	int	cost;
+	int	middle;
+	cost = -1;
+	middle = size(stack) / 2;
+	while (stack)
+	{
+		if (cost <= middle)
+			cost++;
+		else
+			cost--;
+		stack->cost = cost;
+		stack = stack->next;
+	}
 }
 
-//before push, simply sort the first, second and the last in stackA && stackB
+// first half : b.position + target.position
+// how many steps to be on top for A && B
+void	calculate_price(t_stack *a, t_stack *b)
+{
+	set_cost_to_top(a);
+	set_cost_to_top(b);
+	while (b)
+	{
+		b->price = b->cost + b->target->cost;
+		b = b->next;
+	}
+}
 
-static double	sum_stack(t_stack *a, int *i)
+t_stack	*find_cheapest_node(t_stack *b)
+{
+	int		min;
+	t_stack	*best_node;
+
+	best_node = NULL;
+	min = INT_MAX;
+	if (b == NULL)
+		return (NULL);
+	while (b)
+	{
+		if (b->price < min)
+		{
+			min = b->price;
+			best_node = b;
+		}
+		b = b->next;
+	}
+	return (best_node);
+}
+
+static double	get_average(t_stack *a)
 {
 	long long	sum;
-	//int			average;
+	int			i;
 
 	sum = 0;
+	i = size(a);
 	while (a)
 	{
 		sum = sum + a->value;
 		a = a->next;
-		(*i)++;//NOT i++！！pointer++
 	}
-	return (sum);
+	return (sum / i);
 }
 
-void	push_below_average(t_stack **a, t_stack **b)
+void	push_below_average(t_stack **a, t_stack **b)//100 num: 698 steps
 {
-	long long	sum;
-	int			i;
 	int			average;
 
-	i = 0;
-	sum = sum_stack(*a, &i);
-	average = sum / i;
-	while (size(*a) > 5)
-	{
-		sort_three_low_high(a);
-		if (size(*b) >= 3)
-			sort_three_high_low(b);
-		if ((*a)->value < average)
-		{
-			pb(a, b);
-			sum = sum - (*a)->value;
-			i--;
-			average = sum / i;
-		}
-		else
-			ra(a);
-	}
+	average = get_average(*a);
+	if ((*a)->value < average)
+		pb(a, b);
+	else
+		ra(a);
 }
-
-// void	push_below_average(t_stack **a, t_stack **b)
-// {
-// 	double	average;
-
-// 	average = get_average(*a);
-// 	while (size(*a) > 5)
-// 	{
-// 		sort_three_low_high(a);
-// 		if (size(*b) >= 3)
-// 			sort_three_high_low(b);
-// 		if ((*a)->value < average)
-// 		{
-// 			pb(a, b);
-// 			average = get_average(*a);
-			//recalculate sum everytime, low performance
-// 		}
-// 		else
-// 			ra(a);
-// 	}
-// }

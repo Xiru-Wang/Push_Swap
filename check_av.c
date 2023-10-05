@@ -6,7 +6,7 @@
 /*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:04:59 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/02 08:22:12 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/04 10:44:02 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ long int	atoi_range(char *s)
 			sign = -1;
 		s++;
 	}
+	if (*s < '0' || *s > '9')// if av[1]=="+",check if next *s is number
+		handle_err();
 	while(*s >= '0' && *s <= '9')
 	{
 		res = res * 10 + (*s - 48);
@@ -51,6 +53,8 @@ void	check_av(char **av)
 	int	value_k;
 
 	i = 1;
+	if (!av[1])
+		handle_err();
 	while (av[i])
 	{
 		value_i = atoi_range(av[i]);
