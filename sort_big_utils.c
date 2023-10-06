@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_big_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 14:45:05 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/06 19:19:39 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/06 20:23:22 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,22 @@ void	set_cost_to_top(t_stack *stack)
 	cost = 0;
 	count = 0;
 	int size_list = size(stack);
-	if (size_list % 2 == 0) //8/2=4 0 1 2 3 4 3 2 1
-		middle = size_list / 2;
-	else//9/2 + 1 = 5. 0 1 2 3 4 4 3 2 1
-		middle = size_list / 2 + 1;
+	// if (size_list % 2 == 0)
+	// //8/2=4 0 1 2 3 4 3 2 1
+	// //      1 2 3 4 5 6 7 8
+	middle = size_list / 2;
+	// else
+	// //9/2 + 1 = 5. 0 1 2 3 4 4 3 2 1
+	// //             1 2 3 4 5 6 7 8 9
+	// 	middle = size_list / 2 + 1;
 	while (stack)
 	{
 		stack->cost = cost;
 		if (count < middle)//MISTAKE:if(cost < middle)cost到达middle--又会++
 			cost++;
-		else if (count > middle)
+		else if (count == middle && size_list % 2)
+			count++;
+		else
 			cost--;
 		count++;
 		stack = stack->next;
