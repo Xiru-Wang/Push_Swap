@@ -6,7 +6,7 @@
 /*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:01:03 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/02 14:39:08 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:15:29 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	print_stack(t_stack *stack)
 	}
 	while (stack)
 	{
-		printf("value: %d\n", stack->value);
+		printf("value: %d, cost: %d\n", stack->value, stack->cost);
 		stack = stack->next;
 	}
 }

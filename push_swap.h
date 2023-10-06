@@ -6,7 +6,7 @@
 /*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:36:40 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/05 21:15:59 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:11:45 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,13 @@ t_stack		*find_max_node(t_stack *a);
 void		pa(t_stack **a, t_stack **b);
 void		pb(t_stack **b, t_stack **a);
 // count average and push
+void		push_low_quarter(t_stack **a, t_stack **b);
 void		push_below_average(t_stack **a, t_stack **b);
 void		set_target(t_stack *a, t_stack *b);
 void		calculate_price(t_stack *a, t_stack *b);
 void		set_flag(t_stack *stack);
 t_stack		*find_cheapest_node(t_stack *b);
 void		sort_big(t_stack **a, t_stack **b);
+void		set_cost_to_top(t_stack *stack);
 
 # endif

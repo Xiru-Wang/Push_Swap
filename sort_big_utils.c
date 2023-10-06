@@ -6,7 +6,7 @@
 /*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 14:45:05 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/05 21:12:38 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:19:39 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,28 @@ void	set_flag(t_stack *stack)
 	}
 }
 
-//cost to be on top  0 1 2 3 4|3 2 1(8/2 ==4)
-static void	set_cost_to_top(t_stack *stack)
+//cost to be on top  0 1 2 3 4 3 2 1(8/2 ==4)
+void	set_cost_to_top(t_stack *stack)
 {
-	int	cost;
+	int		cost;
 	int	middle;
-	cost = -1;
-	middle = size(stack) / 2;
+	int		count;
+
+	cost = 0;
+	count = 0;
+	int size_list = size(stack);
+	if (size_list % 2 == 0) //8/2=4 0 1 2 3 4 3 2 1
+		middle = size_list / 2;
+	else//9/2 + 1 = 5. 0 1 2 3 4 4 3 2 1
+		middle = size_list / 2 + 1;
 	while (stack)
 	{
-		if (cost <= middle)
-			cost++;
-		else
-			cost--;
 		stack->cost = cost;
+		if (count < middle)//MISTAKE:if(cost < middle)cost到达middle--又会++
+			cost++;
+		else if (count > middle)
+			cost--;
+		count++;
 		stack = stack->next;
 	}
 }
@@ -123,6 +131,47 @@ static double	get_average(t_stack *a)
 	}
 	return (sum / i);
 }
+
+////assign index? 0-100 or 0-500?
+
+//一开始数字太大，低于动态均值的数字太多，
+//先push 最小的一半？average / 2 (最小的四分之一)?X more steps:(
+
+// static t_stack	*last(t_stack *head)
+// {
+// 	//int	value;
+
+// 	while (head->next != NULL)
+// 		head = head->next;//last node
+// 		//value = head->value;//last.value
+// 	return (head);
+// }
+
+// void	push_low_quarter(t_stack **a, t_stack **b)//100 num: 734 steps
+// {
+// 	int	average;
+// 	//int	fix_size;
+// 	t_stack *last_node;
+
+// 	//fix_size = size(*a);
+// 	average = get_average(*a);
+// 	last_node = last(*a);
+// 	while ((*a) != last_node)
+// 	{
+// 		if ((*a)->value < (average / 2))
+// 			pb(a, b);
+// 		else
+// 			ra(a);
+// 	}
+// 	last_node = last(*a);
+// 	while ((*a) != last_node)
+// 	{
+// 		if ((*a)->value < average)
+// 			pb(a, b);
+// 		else
+// 			ra(a);
+// 	}
+// }
 
 void	push_below_average(t_stack **a, t_stack **b)//100 num: 698 steps
 {

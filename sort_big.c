@@ -6,7 +6,7 @@
 /*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:26:55 by xiwang            #+#    #+#             */
-/*   Updated: 2023/10/05 21:17:02 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/06 16:57:44 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 static void	rotate_to_top(t_stack **stack, t_stack *top, char name);
 static void	push_swap(t_stack **a, t_stack **b);
 
-//只修改参数不会修改头节点
 static void	refresh_stacks(t_stack *a, t_stack *b)
 {
 	set_target(a, b);
@@ -62,10 +61,18 @@ static void	push_swap(t_stack **a, t_stack **b)
 	pa(a, b);
 }
 
+// void	compare_push(t_stack **a, t_stack **b)
+// {
+// 	if ((*a)->value < (*a)->next->value)
+// 		pb(a, b);
+// 	ra(a);
+// }
+
 void	sort_big(t_stack **a, t_stack **b)
 {
 	t_stack	*min;
 
+	//push_low_quarter(a, b);
 	while (size(*a) > 5)
 		push_below_average(a, b);
 	// printf("only 5 nodes left in a\n");

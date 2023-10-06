@@ -6,7 +6,7 @@
 /*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:13:51 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/04 11:36:43 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:35:06 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	sort_three(t_stack **a)
 		sa(a);//if 1st > 2rd
 }
 
+// push smallest to b
 void	sort_four(t_stack **a, t_stack **b)
 {
 	t_stack	*temp;
