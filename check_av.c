@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_av.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 16:04:59 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/04 10:44:02 by xiruwang         ###   ########.fr       */
+/*   Created: 2023/10/10 19:05:33 by xiwang            #+#    #+#             */
+/*   Updated: 2023/10/10 19:06:02 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//atoi will handle range, exit if int out of range
+//atoi will handle range, exit if number out of int range
 long int	atoi_range(char *s)
 {
 	long int	res;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:47:32 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/05 21:15:17 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:18:53 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static	t_stack *fill_stack_value(char **av);
 
-t_stack *fill_stack(char **av)
+t_stack	*fill_stack(char **av)
 {
 	t_stack	*a;
 
@@ -46,21 +46,6 @@ static t_stack	*fill_stack_value(char **av)
 	}
 	return (a);
 }
-
-// static void	fill_stack_pos(t_stack **a)
-// {
-// 	t_stack *temp;
-// 	int i;
-
-// 	temp = *a;
-// 	i = 0;
-// 	while (temp)
-// 	{
-// 		temp->pos = i;
-// 		temp = temp->next;
-// 		i++;
-// 	}
-// }
 
 //check if stack is sorted.
 int	is_sorted(t_stack *a)

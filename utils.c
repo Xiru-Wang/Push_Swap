@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:01:03 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/06 17:15:29 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:32:10 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,34 @@ void	handle_err(void)
 	exit(EXIT_FAILURE);
 }
 
-void	free_strs(char **str)
+void	set_flag(t_stack *stack)
 {
 	int	i;
-
+	int	middle;
 	i = 0;
-	while(str[i])
+	middle = size(stack) / 2;
+	while (stack)
 	{
-		free(str[i]);
+		stack->flag = TOP;//top half
+		if (i > middle)
+			stack->flag = BOTTOM;//bottom half
 		i++;
+		stack = stack->next;
 	}
-	free(str);
 }
+
+// void	free_strs(char **str)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while(str[i])
+// 	{
+// 		free(str[i]);
+// 		i++;
+// 	}
+// 	free(str);
+// }
 
 void	free_stack(t_stack **head)
 {

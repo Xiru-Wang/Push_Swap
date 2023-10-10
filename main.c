@@ -6,7 +6,7 @@
 /*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:36:43 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/06 20:27:01 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/10/10 19:18:35 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,10 @@ int main(int ac, char **av)
 	if (ac < 2)
 		return (1);
 	check_av(av);
-	//printf("after check_av\n");
 	a = NULL;
 	b = NULL;
 	a = fill_stack(av);
-	//set_cost_to_top(a);
-	//print_stack(a);
-	//printf("after fill_stack\n");
+
 	if (ac <= 4)
 		sort_three(&a);
 	if (ac == 5)
@@ -37,7 +34,6 @@ int main(int ac, char **av)
 		sort_five(&a, &b);
 	if (ac > 6)
 		sort_big(&a, &b);
-	//print_stack(a);
 	free_stack(&a);
 	return (0);
 }

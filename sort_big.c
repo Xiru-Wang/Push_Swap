@@ -3,25 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   sort_big.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:26:55 by xiwang            #+#    #+#             */
-/*   Updated: 2023/10/06 16:57:44 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:30:10 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//after push 1 node to A, refresh target node, cost, price, best_price
 static void	rotate_to_top(t_stack **stack, t_stack *top, char name);
 static void	push_swap(t_stack **a, t_stack **b);
 
+//find the smallest bigger
+void	set_target(t_stack *a, t_stack *b)
+{
+	int		best_match;
+	t_stack	*target;
+	t_stack	*temp;
+
+	while (b)
+	{
+		best_match = INT_MAX;//make sure it will be replaced
+		temp = a;//!!reset a
+		while (temp)
+		{
+			if (temp->value > b->value && temp->value < best_match)
+			{
+				best_match = temp->value;
+				target = temp;
+			}
+			temp = temp->next;
+		}
+		if (best_match == INT_MAX)// biggestB finds smallestA
+			b->target = find_min_node(a);
+		else
+			b->target = target;
+		b = b->next;
+	}
+}
 static void	refresh_stacks(t_stack *a, t_stack *b)
 {
 	set_target(a, b);
 	set_flag(a);
 	set_flag(b);
-	calculate_price(a, b);//refresh cost, and calculate price
+	calculate_price(a, b);
 }
 
 static void	rotate_to_top(t_stack **stack, t_stack *top, char name)
@@ -30,7 +56,7 @@ static void	rotate_to_top(t_stack **stack, t_stack *top, char name)
 	{
 		if (name == 'a')
 		{
-			if (top->flag == TOP)//ture, top half
+			if (top->flag == TOP)
 				ra(stack);
 			else
 				rra(stack);
@@ -61,21 +87,12 @@ static void	push_swap(t_stack **a, t_stack **b)
 	pa(a, b);
 }
 
-// void	compare_push(t_stack **a, t_stack **b)
-// {
-// 	if ((*a)->value < (*a)->next->value)
-// 		pb(a, b);
-// 	ra(a);
-// }
-
 void	sort_big(t_stack **a, t_stack **b)
 {
 	t_stack	*min;
 
-	//push_low_quarter(a, b);
 	while (size(*a) > 5)
 		push_below_average(a, b);
-	// printf("only 5 nodes left in a\n");
 	sort_five(a, b);
 	while (*b)
 	{

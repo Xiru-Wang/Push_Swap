@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_node.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 20:42:55 by xiruwang          #+#    #+#             */
-/*   Updated: 2023/10/03 21:15:34 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:09:08 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	node_add_back(t_stack **a, t_stack	*new)
 {
 	t_stack	*temp;
 
-	if (a == NULL || new == NULL)//指针的指针a为空 || 新节点的指针new为空
+	if (a == NULL || new == NULL)//pointer to point is empty || pointer to new node is empty
 		return ;
 	if (*a == NULL)//head pointer == NULL:empty list
 	{
