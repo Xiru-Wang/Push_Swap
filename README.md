@@ -2,7 +2,7 @@
 ![pushswap](https://github.com/Xiru-Wang/Push_Swap/assets/79924696/1c4971da-68d5-4ebc-955c-6ffda88afa38)
 
 <img width="150" alt="sort 100 numbers" src="https://github.com/Xiru-Wang/Push_Swap/assets/79924696/79d248c4-7cba-4b84-a21b-43d803e23715">
-Result to sort 100 numbers on average.
+sort 100 numbers。
 
 <img width="150" alt="sort 500 numbers" src="https://github.com/Xiru-Wang/Push_Swap/assets/79924696/c71f71b5-c52e-4f7a-96db-b4caea5fda06">
 Result to sort 500 numbers on average.
